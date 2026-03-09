@@ -35,54 +35,69 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   });
 });
 
-// Reveal-on-scroll animation
+// Reveal-on-scroll animation + graceful fallback
 const revealEls = document.querySelectorAll(".reveal");
-if (revealEls.length > 0) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.16, rootMargin: "0px 0px -30px 0px" },
-  );
+const hasIntersectionObserver = "IntersectionObserver" in window;
 
-  revealEls.forEach((el) => revealObserver.observe(el));
+if (revealEls.length > 0) {
+  if (hasIntersectionObserver) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -20px 0px" },
+    );
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+  } else {
+    // Fallback for old browsers: just show content.
+    revealEls.forEach((el) => el.classList.add("is-visible"));
+  }
 }
 
-// Counter animation for hero stats
+// Counter animation for hero stats + fallback
 const counters = document.querySelectorAll("[data-counter]");
-if (counters.length > 0) {
-  const animateCounter = (el) => {
-    const target = Number(el.getAttribute("data-counter"));
-    if (!Number.isFinite(target) || target <= 0) return;
+const animateCounter = (el) => {
+  if (el.dataset.animated === "1") return;
 
-    const duration = 1000;
-    const start = performance.now();
+  const target = Number(el.getAttribute("data-counter"));
+  if (!Number.isFinite(target) || target <= 0) return;
 
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - (1 - progress) ** 3;
-      const value = Math.round(target * eased);
-      el.textContent = String(value);
-      if (progress < 1) requestAnimationFrame(tick);
-    };
+  el.dataset.animated = "1";
 
-    requestAnimationFrame(tick);
+  const duration = 1000;
+  const start = performance.now();
+
+  const tick = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - (1 - progress) ** 3;
+    const value = Math.round(target * eased);
+    el.textContent = String(value);
+    if (progress < 1) requestAnimationFrame(tick);
   };
 
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        animateCounter(entry.target);
-        counterObserver.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.4 },
-  );
+  requestAnimationFrame(tick);
+};
 
-  counters.forEach((counter) => counterObserver.observe(counter));
+if (counters.length > 0) {
+  if (hasIntersectionObserver) {
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    counters.forEach((counter) => counterObserver.observe(counter));
+  } else {
+    counters.forEach((counter) => animateCounter(counter));
+  }
 }
