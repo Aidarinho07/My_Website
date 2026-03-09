@@ -462,7 +462,28 @@ const applyPsyNewsFilters = () => {
   renderPsyNews(filtered);
 };
 
-const loadPsyNews = async () => {
+const loadLocalPsyNews = async () => {
+  if (!psyNewsListEl) return false;
+  try {
+    const response = await fetch("data/psy-news.json", { method: "GET", cache: "no-store" });
+    if (!response.ok) return false;
+    const payload = await response.json();
+    if (!Array.isArray(payload)) return false;
+    psyNewsCache = payload.map((item) => ({
+      title: item.title || "",
+      excerpt: item.excerpt || "",
+      dateText: item.dateText || "",
+      topic: item.topic || detectTopic(item),
+      dateScore: parseDateScore(item.dateText || ""),
+    }));
+    applyPsyNewsFilters();
+    return psyNewsCache.length > 0;
+  } catch (error) {
+    return false;
+  }
+};
+
+const loadPsyNewsFromRemote = async () => {
   if (!psyNewsListEl) return;
   psyNewsListEl.innerHTML = `
     <article class="card">
@@ -486,6 +507,14 @@ const loadPsyNews = async () => {
 
 psyNewsFilterEl?.addEventListener("change", applyPsyNewsFilters);
 psyNewsSortEl?.addEventListener("change", applyPsyNewsFilters);
-psyNewsRefreshEl?.addEventListener("click", () => loadPsyNews());
+psyNewsRefreshEl?.addEventListener("click", () => loadPsyNewsFromRemote());
 
-loadPsyNews();
+const initPsyNews = async () => {
+  if (!psyNewsListEl) return;
+  const hasLocal = await loadLocalPsyNews();
+  if (!hasLocal) {
+    await loadPsyNewsFromRemote();
+  }
+};
+
+initPsyNews();
