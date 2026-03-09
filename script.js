@@ -83,6 +83,28 @@ let lastScrollY = window.scrollY;
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
+// Hero media position: mobile after subtitle, before booking actions
+const heroInnerEl = document.querySelector(".hero__inner");
+const heroContentEl = document.querySelector(".hero__content");
+const heroMediaEl = document.querySelector(".hero__media");
+const heroActionsEl = document.querySelector(".hero__actions");
+
+const relocateHeroMedia = () => {
+  if (!heroInnerEl || !heroContentEl || !heroMediaEl || !heroActionsEl) return;
+  const isMobile = window.matchMedia("(max-width: 760px)").matches;
+
+  if (isMobile) {
+    if (heroMediaEl.parentElement !== heroContentEl) {
+      heroContentEl.insertBefore(heroMediaEl, heroActionsEl);
+    }
+  } else if (heroMediaEl.parentElement !== heroInnerEl) {
+    heroInnerEl.appendChild(heroMediaEl);
+  }
+};
+
+relocateHeroMedia();
+window.addEventListener("resize", relocateHeroMedia);
+
 // Smooth anchor navigation with focus management
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener("click", (e) => {
@@ -106,6 +128,15 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
         { once: true },
       );
     }
+  });
+});
+
+// Explicit "scroll to top" handling for fixed/mobile controls
+document.querySelectorAll("[data-scroll-top='true']").forEach((el) => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    closeMenu();
   });
 });
 
@@ -174,6 +205,101 @@ if (counters.length > 0) {
   } else {
     counters.forEach((counter) => animateCounter(counter));
   }
+}
+
+// Documents lightbox with keyboard and swipe navigation
+const docLinks = Array.from(document.querySelectorAll(".gallery [data-lightbox='docs']"));
+const lightboxEl = document.getElementById("lightbox");
+const lightboxImg = lightboxEl?.querySelector(".lightbox__image");
+const lightboxCaption = lightboxEl?.querySelector(".lightbox__caption");
+const lightboxCounter = lightboxEl?.querySelector(".lightbox__counter");
+const lightboxClose = lightboxEl?.querySelector(".lightbox__close");
+const lightboxBackdrop = lightboxEl?.querySelector(".lightbox__backdrop");
+const lightboxPrev = lightboxEl?.querySelector(".lightbox__nav--prev");
+const lightboxNext = lightboxEl?.querySelector(".lightbox__nav--next");
+const lightboxViewport = lightboxEl?.querySelector(".lightbox__viewport");
+
+let lightboxIndex = 0;
+
+const renderLightbox = () => {
+  if (!lightboxEl || !lightboxImg || !lightboxCaption || !lightboxCounter || docLinks.length === 0) return;
+
+  const safeIndex = ((lightboxIndex % docLinks.length) + docLinks.length) % docLinks.length;
+  lightboxIndex = safeIndex;
+  const link = docLinks[safeIndex];
+  const img = link.querySelector("img");
+
+  lightboxImg.setAttribute("src", link.getAttribute("href") || "");
+  lightboxImg.setAttribute("alt", img?.getAttribute("alt") || "Документ");
+  lightboxCaption.textContent = img?.getAttribute("alt") || "Документ о квалификации";
+  lightboxCounter.textContent = `${safeIndex + 1} / ${docLinks.length}`;
+};
+
+const openLightbox = (index) => {
+  if (!lightboxEl || docLinks.length === 0) return;
+  lightboxIndex = index;
+  renderLightbox();
+  lightboxEl.removeAttribute("hidden");
+  document.body.classList.add("lightbox-open");
+};
+
+const closeLightbox = () => {
+  if (!lightboxEl) return;
+  lightboxEl.setAttribute("hidden", "");
+  document.body.classList.remove("lightbox-open");
+};
+
+const stepLightbox = (direction) => {
+  lightboxIndex += direction;
+  renderLightbox();
+};
+
+if (lightboxEl && docLinks.length > 0) {
+  docLinks.forEach((link, index) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      openLightbox(index);
+    });
+  });
+
+  lightboxClose?.addEventListener("click", closeLightbox);
+  lightboxBackdrop?.addEventListener("click", closeLightbox);
+  lightboxPrev?.addEventListener("click", () => stepLightbox(-1));
+  lightboxNext?.addEventListener("click", () => stepLightbox(1));
+
+  document.addEventListener("keydown", (e) => {
+    if (lightboxEl.hasAttribute("hidden")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") stepLightbox(-1);
+    if (e.key === "ArrowRight") stepLightbox(1);
+  });
+
+  let pointerStartX = 0;
+  let pointerDiffX = 0;
+  let pointerActive = false;
+
+  lightboxViewport?.addEventListener("pointerdown", (e) => {
+    pointerActive = true;
+    pointerStartX = e.clientX;
+    pointerDiffX = 0;
+  });
+
+  lightboxViewport?.addEventListener("pointermove", (e) => {
+    if (!pointerActive) return;
+    pointerDiffX = e.clientX - pointerStartX;
+  });
+
+  const onPointerEnd = () => {
+    if (!pointerActive) return;
+    pointerActive = false;
+    if (Math.abs(pointerDiffX) < 50) return;
+    if (pointerDiffX < 0) stepLightbox(1);
+    if (pointerDiffX > 0) stepLightbox(-1);
+  };
+
+  lightboxViewport?.addEventListener("pointerup", onPointerEnd);
+  lightboxViewport?.addEventListener("pointercancel", onPointerEnd);
+  lightboxViewport?.addEventListener("pointerleave", onPointerEnd);
 }
 
 // Micro-interaction on tap/click for buttons

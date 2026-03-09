@@ -259,11 +259,16 @@
 
         <h3 class="subsection__title reveal">Документы о квалификации</h3>
         <div class="gallery reveal" aria-label="Документы о квалификации">
-          <a class="gallery__item" href="https://i.taplink.st/d/8/9/8/45498870.jpg?0" target="_blank" rel="noreferrer"><img src="https://i.taplink.st/d/8/9/8/45498870.jpg?0" alt="Документ 1" loading="lazy"></a>
-          <a class="gallery__item" href="https://i.taplink.st/5/8/4/5/45498885.jpg?0" target="_blank" rel="noreferrer"><img src="https://i.taplink.st/5/8/4/5/45498885.jpg?0" alt="Документ 2" loading="lazy"></a>
-          <a class="gallery__item" href="https://i.taplink.st/8/a/8/0/45498894.jpg?0" target="_blank" rel="noreferrer"><img src="https://i.taplink.st/8/a/8/0/45498894.jpg?0" alt="Документ 3" loading="lazy"></a>
-          <a class="gallery__item" href="https://i.taplink.st/a/1/5/8/45498933.jpg?0" target="_blank" rel="noreferrer"><img src="https://i.taplink.st/a/1/5/8/45498933.jpg?0" alt="Документ 4" loading="lazy"></a>
-          <a class="gallery__item" href="https://i.taplink.st/5/e/c/5/45498972.jpg?0" target="_blank" rel="noreferrer"><img src="https://i.taplink.st/5/e/c/5/45498972.jpg?0" alt="Документ 5" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-01.png" data-lightbox="docs"><img src="img/doc-01.png" alt="Документ о квалификации 1" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-02.png" data-lightbox="docs"><img src="img/doc-02.png" alt="Документ о квалификации 2" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-03.png" data-lightbox="docs"><img src="img/doc-03.png" alt="Документ о квалификации 3" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-04.png" data-lightbox="docs"><img src="img/doc-04.png" alt="Документ о квалификации 4" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-05.png" data-lightbox="docs"><img src="img/doc-05.png" alt="Документ о квалификации 5" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-06.png" data-lightbox="docs"><img src="img/doc-06.png" alt="Документ о квалификации 6" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-07.png" data-lightbox="docs"><img src="img/doc-07.png" alt="Документ о квалификации 7" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-08.png" data-lightbox="docs"><img src="img/doc-08.png" alt="Документ о квалификации 8" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-09.png" data-lightbox="docs"><img src="img/doc-09.png" alt="Документ о квалификации 9" loading="lazy"></a>
+          <a class="gallery__item" href="img/doc-10.png" data-lightbox="docs"><img src="img/doc-10.png" alt="Документ о квалификации 10" loading="lazy"></a>
         </div>
       </div>
     </section>
@@ -308,19 +313,54 @@
           <p class="section__lead">Напишите в удобный мессенджер — согласуем дату, время и формат встречи.</p>
         </div>
 
-        <div class="cta__actions">
-          <a class="button button--primary" href="https://t.me/Aida_Khikmatullina" target="_blank" rel="noreferrer">Написать в Telegram</a>
-          <a class="button button--ghost" href="https://vk.me/id412170144" target="_blank" rel="noreferrer">Написать в ВК</a>
-          <a class="button button--ghost" href="https://max.ru/u/89829878030" target="_blank" rel="noreferrer">Написать в Max</a>
+        <div class="cta__actions cta__actions--icons">
+          <a class="icon-btn icon-btn--tg" href="https://t.me/Aida_Baimukhametova" target="_blank" rel="noreferrer" aria-label="Написать в Telegram" title="Telegram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21.6 4.2a1 1 0 0 0-1-.15L3.1 10.8a1 1 0 0 0 .06 1.87l4.57 1.53 1.53 4.57a1 1 0 0 0 1.78.2l2.57-3.54 4.42 3.26a1 1 0 0 0 1.57-.61l2.38-12.93a1 1 0 0 0-.38-1.02ZM9.8 16.3l-.92-2.74 7.74-6.06-6.82 6.97Zm8.7.06-3.52-2.6-2.27-1.67L19.36 7l-.86 9.36Z"/>
+            </svg>
+            <span class="sr-only">Telegram</span>
+          </a>
+          <a class="icon-btn icon-btn--vk" href="https://vk.me/id412170144" target="_blank" rel="noreferrer" aria-label="Написать во ВКонтакте" title="ВКонтакте">
+            <span class="icon-btn__text" aria-hidden="true">VK</span>
+            <span class="sr-only">ВКонтакте</span>
+          </a>
+          <a class="icon-btn icon-btn--max" href="https://max.ru/u/f9LHodD0cOLuk_UDrpuo9YV8h8ppiOdiaU0b1kN8GQrFLea8POHlLm63tCw" target="_blank" rel="noreferrer" aria-label="Написать в MAX" title="MAX">
+            <span class="icon-btn__text" aria-hidden="true">M</span>
+            <span class="sr-only">MAX</span>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__backdrop" type="button" aria-label="Закрыть"></button>
+    <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Просмотр документа">
+      <button class="lightbox__close" type="button" aria-label="Закрыть">×</button>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Предыдущий документ">‹</button>
+      <div class="lightbox__viewport">
+        <img class="lightbox__image" src="" alt="">
+      </div>
+      <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Следующий документ">›</button>
+      <div class="lightbox__meta">
+        <span class="lightbox__caption"></span>
+        <span class="lightbox__counter"></span>
+      </div>
+    </div>
+  </div>
+
   <div class="mobile-cta" aria-label="Быстрые действия">
-    <a class="button button--ghost mobile-cta__chip" href="https://t.me/Aida_Khikmatullina" target="_blank" rel="noreferrer">Telegram</a>
+    <a class="icon-btn icon-btn--tg mobile-cta__chip" href="https://t.me/Aida_Baimukhametova" target="_blank" rel="noreferrer" aria-label="Telegram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21.6 4.2a1 1 0 0 0-1-.15L3.1 10.8a1 1 0 0 0 .06 1.87l4.57 1.53 1.53 4.57a1 1 0 0 0 1.78.2l2.57-3.54 4.42 3.26a1 1 0 0 0 1.57-.61l2.38-12.93a1 1 0 0 0-.38-1.02ZM9.8 16.3l-.92-2.74 7.74-6.06-6.82 6.97Zm8.7.06-3.52-2.6-2.27-1.67L19.36 7l-.86 9.36Z"/>
+      </svg>
+      <span class="sr-only">Telegram</span>
+    </a>
     <a class="button button--primary mobile-cta__button" href="#booking">Записаться</a>
-    <a class="button button--ghost mobile-cta__chip" href="https://vk.me/id412170144" target="_blank" rel="noreferrer">ВК</a>
+    <a class="icon-btn icon-btn--top mobile-cta__chip" href="#top" data-scroll-top="true" aria-label="Наверх">
+      <span class="icon-btn__text" aria-hidden="true">↑</span>
+      <span class="sr-only">Наверх</span>
+    </a>
   </div>
 
   <footer class="footer" id="footer">
@@ -331,9 +371,9 @@
       </div>
 
       <div class="footer__links">
-        <a class="footer__link" href="#top">Наверх</a>
+        <a class="footer__link" href="#top" data-scroll-top="true">Наверх</a>
         <a class="footer__link" href="#pricing">Стоимость</a>
-        <a class="footer__link" href="https://t.me/+S0p2kfIes7g2ZjJi" target="_blank" rel="noreferrer">Telegram</a>
+        <a class="footer__link" href="https://t.me/Aida_Baimukhametova" target="_blank" rel="noreferrer">Telegram</a>
         <a class="footer__link" href="https://vk.com/id412170144" target="_blank" rel="noreferrer">ВКонтакте</a>
       </div>
 
