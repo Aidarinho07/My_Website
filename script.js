@@ -16,6 +16,7 @@ const closeMenu = () => {
     navOverlay.classList.remove("is-open");
   }
   document.body.classList.remove("menu-open");
+  headerEl?.classList.remove("is-hidden");
 };
 
 const openMenu = () => {
@@ -28,6 +29,7 @@ const openMenu = () => {
     requestAnimationFrame(() => navOverlay.classList.add("is-open"));
   }
   document.body.classList.add("menu-open");
+  headerEl?.classList.remove("is-hidden");
 };
 
 if (navToggle && navEl) {
@@ -57,7 +59,27 @@ if (navToggle && navEl) {
 const onScroll = () => {
   if (!headerEl) return;
   headerEl.classList.toggle("is-scrolled", window.scrollY > 10);
+
+  const isMobile = window.matchMedia("(max-width: 760px)").matches;
+  if (!isMobile || document.body.classList.contains("menu-open")) {
+    headerEl.classList.remove("is-hidden");
+    lastScrollY = window.scrollY;
+    return;
+  }
+
+  const currentY = window.scrollY;
+  const delta = currentY - lastScrollY;
+
+  if (currentY < 24 || delta < -5) {
+    headerEl.classList.remove("is-hidden");
+  } else if (delta > 8 && currentY > 120) {
+    headerEl.classList.add("is-hidden");
+  }
+
+  lastScrollY = currentY;
 };
+
+let lastScrollY = window.scrollY;
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
@@ -153,3 +175,17 @@ if (counters.length > 0) {
     counters.forEach((counter) => animateCounter(counter));
   }
 }
+
+// Micro-interaction on tap/click for buttons
+document.querySelectorAll(".button").forEach((button) => {
+  button.addEventListener("pointerdown", () => {
+    button.classList.remove("is-tapped");
+    // Force reflow so animation can replay
+    void button.offsetWidth;
+    button.classList.add("is-tapped");
+  });
+
+  button.addEventListener("animationend", () => {
+    button.classList.remove("is-tapped");
+  });
+});
