@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="База знаний: статьи и практические материалы по тревоге, самооценке, отношениям и эмоциональной устойчивости.">
+  <title>База знаний — Аида Баймухаметова</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="index.html"><span class="brand__title">Аида Баймухаметова</span><span class="brand__sub">Психолог</span></a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__line"></span><span class="nav-toggle__line"></span><span class="nav-toggle__line"></span>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Главная</a></li>
+          <li><a class="nav__link" href="services.html">Направления</a></li>
+          <li><a class="nav__link" href="formats.html">Форматы</a></li>
+          <li><a class="nav__link" href="blog.html">База знаний</a></li>
+          <li><a class="nav__link" href="test.html">Мини-тест</a></li>
+          <li><a class="nav__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+      <a class="button button--primary header__cta" href="contacts.html#booking">Записаться</a>
+    </div>
+  </header>
+  <div class="nav-overlay" hidden></div>
+
+  <main id="main">
+    <section class="section hero">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">База знаний</span>
+          <h1 class="hero__title">Материалы для поддержки между сессиями</h1>
+          <p class="hero__subtitle">Здесь будут статьи, чеклисты и мини-практики, к которым удобно возвращаться.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="cards cards--3 reveal">
+          <article class="card">
+            <h2 class="card__title">Как снизить тревогу за 10 минут</h2>
+            <p class="card__text">Простая структура самопомощи, если мысли «разгоняются» и сложно остановиться.</p>
+            <a class="button button--ghost" href="post-anxiety-10-min.html">Читать статью</a>
+          </article>
+          <article class="card">
+            <h2 class="card__title">Личные границы без чувства вины</h2>
+            <p class="card__text">Фразы и микро-шаги, чтобы мягко, но уверенно отстаивать свои границы.</p>
+            <a class="button button--ghost" href="contacts.html#booking">Открыть тему на сессии</a>
+          </article>
+          <article class="card">
+            <h2 class="card__title">Что делать после эмоционального срыва</h2>
+            <p class="card__text">Алгоритм восстановления: как не провалиться в самокритику и вернуть устойчивость.</p>
+            <a class="button button--ghost" href="contacts.html#booking">Разобрать с психологом</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div><div class="brand__title">Аида Баймухаметова</div><div class="footer__meta">Психолог • Онлайн и очно</div></div>
+      <div class="footer__links">
+        <a class="footer__link" href="services.html">Направления</a>
+        <a class="footer__link" href="formats.html">Форматы</a>
+        <a class="footer__link" href="test.html">Мини-тест</a>
+      </div>
+      <div class="footer__copy">© <span id="year"></span> Все права защищены</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Мини-тест самодиагностики: оцените текущий уровень эмоциональной нагрузки и получите мягкие рекомендации.">
+  <title>Мини-тест состояния — Аида Баймухаметова</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="index.html"><span class="brand__title">Аида Баймухаметова</span><span class="brand__sub">Психолог</span></a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__line"></span><span class="nav-toggle__line"></span><span class="nav-toggle__line"></span>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Главная</a></li>
+          <li><a class="nav__link" href="services.html">Направления</a></li>
+          <li><a class="nav__link" href="formats.html">Форматы</a></li>
+          <li><a class="nav__link" href="blog.html">База знаний</a></li>
+          <li><a class="nav__link" href="test.html">Мини-тест</a></li>
+          <li><a class="nav__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+      <a class="button button--primary header__cta" href="contacts.html#booking">Записаться</a>
+    </div>
+  </header>
+  <div class="nav-overlay" hidden></div>
+
+  <main id="main">
+    <section class="section">
+      <div class="container reveal">
+        <span class="eyebrow">Мини-тест</span>
+        <h1 class="section__title">Оцените текущее эмоциональное состояние</h1>
+        <p class="section__lead">Отметьте, как часто это было за последние 2 недели. Это не диагноз, а ориентир для самонаблюдения.</p>
+
+        <div class="panel" style="margin-top: 16px;">
+          <form id="self-check-form" class="faq">
+            <label class="details"><span>1. Мне сложно расслабиться вечером.</span><input type="range" name="q1" min="0" max="3" value="1"></label>
+            <label class="details"><span>2. Мысли часто «крутятся» и мешают сосредоточиться.</span><input type="range" name="q2" min="0" max="3" value="1"></label>
+            <label class="details"><span>3. Я чувствую раздражение или внутреннее напряжение.</span><input type="range" name="q3" min="0" max="3" value="1"></label>
+            <label class="details"><span>4. Мне трудно восстанавливаться после стрессовых ситуаций.</span><input type="range" name="q4" min="0" max="3" value="1"></label>
+            <button class="button button--primary" type="submit">Показать результат</button>
+          </form>
+          <p id="self-check-result" class="section-note" style="margin-top: 12px;"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div><div class="brand__title">Аида Баймухаметова</div><div class="footer__meta">Психолог • Онлайн и очно</div></div>
+      <div class="footer__links">
+        <a class="footer__link" href="blog.html">База знаний</a>
+        <a class="footer__link" href="contacts.html#booking">Записаться</a>
+      </div>
+      <div class="footer__copy">© <span id="year"></span> Все права защищены</div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById("self-check-form");
+    const result = document.getElementById("self-check-result");
+    if (form && result) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const score = ["q1", "q2", "q3", "q4"].reduce((sum, key) => sum + Number(data.get(key) || 0), 0);
+        if (score <= 4) {
+          result.textContent = "Сейчас уровень нагрузки выглядит умеренным. Поддерживайте сон, отдых и телесные паузы.";
+        } else if (score <= 8) {
+          result.textContent = "Есть признаки повышенного напряжения. Полезно добавить регулярные практики саморегуляции и опоры.";
+        } else {
+          result.textContent = "Нагрузка высокая. Лучше не оставаться с этим в одиночку и обсудить состояние на консультации.";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
