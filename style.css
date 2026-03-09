@@ -912,3 +912,231 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: 1fr;
   }
 }
+
+/* Mobile UX fixes */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(51, 51, 51, 0.14);
+  background: #fff;
+  padding: 9px 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-direction: column;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-toggle__line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: #3f3f3f;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle.is-active {
+  background: #f0ece2;
+  border-color: rgba(51, 51, 51, 0.2);
+}
+
+.nav-toggle.is-active .nav-toggle__line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.is-active .nav-toggle__line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-active .nav-toggle__line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-overlay {
+  display: none;
+}
+
+.mobile-cta {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px 10px;
+    padding: 10px 0;
+  }
+
+  .brand__title {
+    font-size: 0.98rem;
+    line-height: 1.2;
+  }
+
+  .brand__sub {
+    font-size: 0.72rem;
+  }
+
+  .header__cta {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 45;
+    background: rgba(249, 247, 242, 0.98);
+    border-top: 1px solid rgba(51, 51, 51, 0.08);
+    border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-14px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    max-height: calc(100vh - 70px);
+    overflow: auto;
+  }
+
+  .nav.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 44;
+    background: rgba(28, 30, 26, 0.18);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    gap: 0;
+    padding: 6px 14px 10px;
+  }
+
+  .nav__link {
+    justify-content: flex-start;
+    width: 100%;
+    padding: 12px 10px;
+    min-height: 46px;
+    border-bottom: 1px dashed rgba(51, 51, 51, 0.08);
+  }
+
+  .nav__list li:last-child .nav__link {
+    border-bottom: none;
+  }
+
+  .section {
+    padding: 42px 0;
+  }
+
+  .section:first-of-type {
+    padding-top: 30px;
+  }
+
+  .hero__title {
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.1;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .hero__actions .button,
+  .cta__actions .button {
+    width: 100%;
+  }
+
+  .stat {
+    padding: 12px 13px;
+  }
+
+  .stat__value {
+    font-size: 1.22rem;
+  }
+
+  .trust__inner,
+  .card,
+  .timeline__item,
+  .plan,
+  .panel {
+    border-radius: 14px;
+  }
+
+  .mobile-cta {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 8px;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 60;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-cta__chip {
+    min-width: 72px;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .mobile-cta__button {
+    width: 100%;
+    justify-content: center;
+    box-shadow: 0 14px 25px rgba(122, 135, 108, 0.35);
+    border-radius: 999px;
+    animation: pulseCta 2.4s ease-in-out infinite;
+  }
+
+  .footer {
+    padding-bottom: 92px;
+  }
+}
+
+@keyframes pulseCta {
+  0%, 100% {
+    box-shadow: 0 14px 25px rgba(122, 135, 108, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 30px rgba(122, 135, 108, 0.5);
+  }
+}

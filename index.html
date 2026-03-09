@@ -23,7 +23,19 @@
         <span class="brand__sub">Психолог</span>
       </a>
 
-      <nav class="nav" aria-label="Главное меню">
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+        <span class="nav-toggle__line"></span>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Главное меню">
         <ul class="nav__list">
           <li><a class="nav__link" href="#about">Обо мне</a></li>
           <li><a class="nav__link" href="#services">Запросы</a></li>
@@ -36,6 +48,7 @@
       <a class="button button--primary header__cta" href="#booking">Записаться</a>
     </div>
   </header>
+  <div class="nav-overlay" hidden></div>
 
   <main id="main">
     <section class="hero section">
@@ -295,6 +308,12 @@
       </div>
     </section>
   </main>
+
+  <div class="mobile-cta" aria-label="Быстрые действия">
+    <a class="button button--ghost mobile-cta__chip" href="https://t.me/Aida_Khikmatullina" target="_blank" rel="noreferrer">Telegram</a>
+    <a class="button button--primary mobile-cta__button" href="#booking">Записаться</a>
+    <a class="button button--ghost mobile-cta__chip" href="https://vk.me/id412170144" target="_blank" rel="noreferrer">ВК</a>
+  </div>
 
   <footer class="footer" id="footer">
     <div class="container footer__inner">
