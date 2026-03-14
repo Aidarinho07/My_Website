@@ -105,6 +105,44 @@
         </div>
 
         <figure class="hero__media reveal">
+          <div class="scroll-daisy" id="scroll-daisy" aria-hidden="true">
+            <svg class="scroll-daisy__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="daisy-petal" x1="50%" y1="0%" x2="50%" y2="100%">
+                  <stop offset="0%" stop-color="#fffef9"/>
+                  <stop offset="50%" stop-color="#f5ede5"/>
+                  <stop offset="100%" stop-color="#e8ddd4"/>
+                </linearGradient>
+                <linearGradient id="daisy-petal-accent" x1="50%" y1="0%" x2="50%" y2="100%">
+                  <stop offset="0%" stop-color="#faf6f0"/>
+                  <stop offset="60%" stop-color="#ecdcd2"/>
+                  <stop offset="100%" stop-color="#d8c4b8"/>
+                </linearGradient>
+                <radialGradient id="daisy-center" cx="35%" cy="35%" r="65%">
+                  <stop offset="0%" stop-color="#f8f0d8"/>
+                  <stop offset="50%" stop-color="#eed9a8"/>
+                  <stop offset="100%" stop-color="#d4b87a"/>
+                </radialGradient>
+                <filter id="daisy-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="rgba(120,90,70,0.12)"/>
+                  <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="rgba(196,166,157,0.2)"/>
+                </filter>
+              </defs>
+              <g class="scroll-daisy__flower" filter="url(#daisy-shadow)">
+                <g class="petals">
+                  <ellipse class="petal petal--alt" cx="50" cy="50" rx="10" ry="22" transform="rotate(0 50 50)"/>
+                  <ellipse class="petal" cx="50" cy="50" rx="10" ry="22" transform="rotate(45 50 50)"/>
+                  <ellipse class="petal petal--alt" cx="50" cy="50" rx="10" ry="22" transform="rotate(90 50 50)"/>
+                  <ellipse class="petal" cx="50" cy="50" rx="10" ry="22" transform="rotate(135 50 50)"/>
+                  <ellipse class="petal petal--alt" cx="50" cy="50" rx="10" ry="22" transform="rotate(180 50 50)"/>
+                  <ellipse class="petal" cx="50" cy="50" rx="10" ry="22" transform="rotate(225 50 50)"/>
+                  <ellipse class="petal petal--alt" cx="50" cy="50" rx="10" ry="22" transform="rotate(270 50 50)"/>
+                  <ellipse class="petal" cx="50" cy="50" rx="10" ry="22" transform="rotate(315 50 50)"/>
+                </g>
+                <circle class="center" cx="50" cy="50" r="14"/>
+              </g>
+            </svg>
+          </div>
           <img class="hero__photo" src="img/psychologist.jpg" alt="Психолог Аида Баймухаметова" loading="eager">
           <figcaption class="hero__caption">Очно: Тюмень, 50 лет ВЛКСМ, 51 • БЦ «Гранд»</figcaption>
         </figure>
