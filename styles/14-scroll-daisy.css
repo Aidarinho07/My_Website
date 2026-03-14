@@ -49,3 +49,32 @@
     opacity: 0.88;
   }
 }
+
+/* Стикер сверху возле фото + вращение */
+@keyframes sticker-spin {
+  from { transform: rotate(-12deg); }
+  to   { transform: rotate(348deg); }
+}
+
+.hero-sticker {
+  position: absolute;
+  left: -16px;
+  top: -20px;
+  width: 120px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 4px 12px rgba(100, 70, 60, 0.15));
+  transform: rotate(-12deg);
+  object-fit: contain;
+  animation: sticker-spin 8s linear infinite;
+}
+
+@media (max-width: 760px) {
+  .hero-sticker {
+    width: 90px;
+    left: -8px;
+    top: -12px;
+    animation-duration: 10s;
+  }
+}
