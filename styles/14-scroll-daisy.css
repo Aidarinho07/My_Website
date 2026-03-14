@@ -1,0 +1,40 @@
+/* Ромашка в центре экрана, крутится при прокрутке */
+.scroll-daisy {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.72;
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+.scroll-daisy__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.scroll-daisy .petal {
+  fill: rgba(255, 255, 255, 0.92);
+  stroke: rgba(196, 166, 157, 0.35);
+  stroke-width: 0.6;
+}
+
+.scroll-daisy .center {
+  fill: #f5e6a3;
+  stroke: rgba(210, 180, 140, 0.4);
+  stroke-width: 0.8;
+}
+
+@media (max-width: 760px) {
+  .scroll-daisy {
+    width: 48px;
+    height: 48px;
+    opacity: 0.6;
+  }
+}

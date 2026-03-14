@@ -83,6 +83,27 @@ let lastScrollY = window.scrollY;
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
+// Ромашка в центре экрана, вращается при прокрутке
+const scrollDaisy = () => {
+  const wrap = document.getElementById("scroll-daisy");
+  if (!wrap) return;
+  const deg = window.scrollY * 0.25;
+  wrap.style.transform = `translate(-50%, -50%) rotate(${deg}deg)`;
+};
+const daisyEl = document.createElement("div");
+daisyEl.id = "scroll-daisy";
+daisyEl.className = "scroll-daisy";
+daisyEl.setAttribute("aria-hidden", "true");
+daisyEl.innerHTML = `<svg class="scroll-daisy__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g class="petals">
+    ${[0, 45, 90, 135, 180, 225, 270, 315].map((r) => `<ellipse class="petal" cx="50" cy="50" rx="10" ry="22" transform="rotate(${r} 50 50)"/>`).join("")}
+  </g>
+  <circle class="center" cx="50" cy="50" r="14"/>
+</svg>`;
+document.body.appendChild(daisyEl);
+window.addEventListener("scroll", scrollDaisy, { passive: true });
+scrollDaisy();
+
 // Hero media position: mobile after subtitle, before booking actions
 const heroInnerEl = document.querySelector(".hero__inner");
 const heroContentEl = document.querySelector(".hero__content");
