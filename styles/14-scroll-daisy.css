@@ -50,7 +50,11 @@
   }
 }
 
-/* Стикер сверху возле фото + вращение */
+/* Стикер сверху возле фото + вращение (с префиксами для всех браузеров) */
+@-webkit-keyframes sticker-spin {
+  from { -webkit-transform: rotate(-12deg); transform: rotate(-12deg); }
+  to   { -webkit-transform: rotate(348deg); transform: rotate(348deg); }
+}
 @keyframes sticker-spin {
   from { transform: rotate(-12deg); }
   to   { transform: rotate(348deg); }
@@ -67,7 +71,9 @@
   filter: drop-shadow(0 4px 12px rgba(100, 70, 60, 0.15));
   transform: rotate(-12deg);
   object-fit: contain;
+  -webkit-animation: sticker-spin 8s linear infinite;
   animation: sticker-spin 8s linear infinite;
+  will-change: transform;
 }
 
 @media (max-width: 760px) {
@@ -75,6 +81,14 @@
     width: 90px;
     left: -8px;
     top: -12px;
+    -webkit-animation-duration: 10s;
     animation-duration: 10s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sticker {
+    -webkit-animation: none;
+    animation: none;
   }
 }
