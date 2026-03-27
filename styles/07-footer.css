@@ -1,0 +1,32 @@
+/* Footer */
+.footer {
+  padding: 28px 0 40px;
+  border-top: 1px solid rgba(51, 51, 51, 0.1);
+  background: rgba(51, 51, 51, 0.03);
+}
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr;
+  gap: 14px;
+  align-items: center;
+}
+.footer__meta { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+.footer__links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer__link {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+.footer__link:hover,
+.footer__link:focus-visible {
+  color: var(--text);
+  background: rgba(51, 51, 51, 0.06);
+  outline: none;
+}
+.footer__copy { color: var(--muted); text-align: right; }

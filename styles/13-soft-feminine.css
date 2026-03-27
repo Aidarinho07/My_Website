@@ -1,0 +1,148 @@
+/* Soft feminine polish: JPG terrazzo + soft overlay (first layer = topmost). */
+.terrazzo-pattern-background,
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(
+      rgba(249, 247, 242, 0.93),
+      rgba(249, 247, 242, 0.93)
+    ),
+    radial-gradient(900px 500px at 12% -8%, rgba(223, 180, 170, 0.20), transparent 58%),
+    radial-gradient(860px 460px at 88% 0%, rgba(213, 188, 178, 0.16), transparent 62%),
+    radial-gradient(700px 360px at 50% 106%, rgba(184, 211, 196, 0.12), transparent 62%),
+    url("../img/terrazzo-pattern-background.jpg");
+  background-size: auto, auto, auto, auto, cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: scroll, fixed, fixed, fixed, fixed;
+}
+
+.section--alt {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.16) 100%),
+    rgba(51, 51, 51, 0.015);
+}
+
+.eyebrow {
+  background: linear-gradient(90deg, rgba(217, 180, 171, 0.28), rgba(196, 166, 157, 0.18));
+  color: #725954;
+  border: 1px solid rgba(186, 144, 132, 0.24);
+}
+
+.section__title {
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+.section__title::after {
+  content: "";
+  display: block;
+  width: 74px;
+  height: 3px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d8b2a9 0%, #c5a29a 60%, #b9c9be 100%);
+}
+
+.hero__subtitle,
+.card__text,
+.timeline__text,
+.section__lead,
+.details__body,
+.section-note {
+  color: #5f5654;
+}
+
+.hero__media {
+  border-color: rgba(196, 166, 157, 0.24);
+  box-shadow:
+    0 18px 34px rgba(132, 101, 91, 0.12),
+    0 4px 10px rgba(88, 68, 61, 0.06);
+}
+
+.hero__photo {
+  filter: saturate(0.96) contrast(1.03);
+}
+
+.trust__inner,
+.card,
+.timeline__item,
+.plan,
+.panel,
+.details {
+  border-color: rgba(196, 166, 157, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 251, 249, 0.82) 100%);
+}
+
+.trust__list li {
+  background: linear-gradient(180deg, rgba(216, 190, 180, 0.30), rgba(196, 166, 157, 0.22));
+  color: #755d58;
+}
+
+.card,
+.timeline__item,
+.plan,
+.panel {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.card:hover,
+.timeline__item:hover,
+.plan:hover,
+.panel:hover {
+  transform: translateY(-3px);
+  border-color: rgba(186, 144, 132, 0.34);
+  box-shadow: 0 16px 26px rgba(124, 92, 82, 0.12);
+}
+
+.plan--featured {
+  border-color: rgba(192, 150, 140, 0.48);
+  box-shadow:
+    0 16px 30px rgba(194, 148, 136, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.plan__badge {
+  background: linear-gradient(90deg, #cc9f95 0%, #b78d86 100%);
+}
+
+.timeline__num {
+  background: linear-gradient(160deg, #d0a79f 0%, #b98f86 100%);
+  box-shadow: 0 8px 14px rgba(185, 143, 134, 0.34);
+}
+
+.button--primary {
+  background: linear-gradient(135deg, #d8b2a9 0%, #c59f96 45%, #b58a82 100%);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.button--primary:hover {
+  background: linear-gradient(135deg, #d2a99f 0%, #be978f 45%, #ab7f78 100%);
+}
+
+.button--ghost {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(250, 242, 239, 0.95));
+  border-color: rgba(196, 166, 157, 0.25);
+}
+
+.hero-minibar {
+  border-color: rgba(196, 166, 157, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(251, 244, 241, 0.9));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .timeline__item,
+  .plan,
+  .panel,
+  .button,
+  .reveal {
+    transition: none !important;
+    animation: none !important;
+  }
+}
